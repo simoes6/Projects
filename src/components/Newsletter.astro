@@ -9,8 +9,146 @@
 
 <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d38107.06306858608!2d-6.279617485595311!3d53.34877943644413!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x48670f684d647cf3%3A0xb2c5bb20a0a8c89e!2sThe%20Run%20Hub!5e0!3m2!1sen!2sie!4v1716323610333!5m2!1sen!2sie" width="100%" height="350" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
 
+<br>
 
 
+
+
+
+    <!-- CSS link -->
+    <link rel="stylesheet" href="./api.css">
+
+
+    <!-- Font awsome link -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"
+        integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w=="
+        crossorigin="anonymous" />
+
+
+    <!-- Google fonts link -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300&display=swap" rel="stylesheet">
+
+
+    
+
+    <div>
+    <h2 class="text-white text-4xl mb-3 max-sm:text-left">
+        <p>Check the local weather for your run!
+        </p>
+        <br>
+        <p class="text-zinc-300 text-xl mb-12 max-sm:mb-16 max-sm:text-left">
+            Don't get caught in the rain, know what conditions to expect before you go.
+
+        
+        </p>
+
+        <div class="input">
+            <input type="text" class="inputValue" placeholder="Enter Location">
+            <button class="button"><i class="fas fa-search"></i></button>
+        </div>
+
+
+        <div class="displayWeather">
+            <h1 class="temp">----°C</h1>
+            <p class="desc">---</p>
+        </div>
+    
+        
+
+    
+
+    <style>
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    max-width: 420px;
+    margin: 1em;
+    padding: 2em;
+    border-radius: 14px;
+    background: rgb(234 234 234);
+    background: #000000d0;
+    color: white;
+}
+
+.input > input {
+    border: none;
+    outline: none;
+    padding: 0.3rem;
+    border-radius: 18px;
+    color: rgb(255 255 255);
+    background: #7c7c7c2b;
+    font-family: 'Raleway', sans-serif;
+}
+
+button.button {
+    border: none;
+    width: 29px;
+    padding: 6px;
+    border-radius: 20px;
+    background: #7c7c7c2b;
+    color: white;
+    font-family: 'Raleway', sans-serif;
+    transition: (.5s);
+}
+
+button.button:focus{
+    outline:none;
+}
+
+button.button:hover{
+    border: 1px solid rgb(122, 112, 112) 
+    
+}
+
+.displayWeather{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Raleway', sans-serif;
+}
+
+
+    </style>
+
+    <br>
+
+    <script>
+    // ACCESSING ALL THE HTML COMPONENTS REQUIRED TO PERFORM ACTIONS ON.
+let button = document.querySelector('.button')
+let inputvalue = document.querySelector('.inputValue')
+let nameVal = document.querySelector('.name');
+let temp = document.querySelector('.temp');
+let desc = document.querySelector('.desc');
+
+
+// ADDING EVENT LISTENER TO SEARCH BUTTON  
+button.addEventListener('click', function(){
+
+    // Fection data from open weather API
+    fetch(`https://api.openweathermap.org/data/2.5/weather?q=${inputvalue.value}&units=metric&appid=108dd9a67c96f23039937fe6f3c91963`)
+    .then(response => response.json())
+    .then(
+        displayData)
+    .catch(err => alert('Wrong City name')); 
+
+})
+
+// Function to diplay weather on html document
+const displayData=(weather)=>{
+    temp.innerText=`${weather.main.temp}°C`
+    desc.innerText=`${weather.weather[0].main}`
+
+}
+
+</script> 
+</div>
+</section>
 
 <h2 class="text-white text-4xl mb-3 max-sm:text-left">
     Connect with fellow runners and find the best running trails near you.
